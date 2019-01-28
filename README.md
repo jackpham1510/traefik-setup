@@ -17,12 +17,14 @@ htpasswd -nb <username> <password>
 Put its output in `traefik.toml` and `traefik.prod.toml`
 
 ```toml
-...
-
 [entryPoints.dashboard.auth.basic]
 users = ["<username>:<encryped_password>"]
+```
 
-...
+## Create external network
+
+```bash
+docker network create web
 ```
 
 ## Run
