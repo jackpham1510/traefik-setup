@@ -1,0 +1,45 @@
+# defaultEntryPoints must be at the top 
+# because it should not be in any table below
+
+defaultEntryPoints = ["http", "https"]
+
+[api]
+entrypoint="dashboard"
+
+# Entrypoints, http and https
+[entryPoints]
+[entryPoints.dashboard]
+address = ":8080"
+[entryPoints.dashboard.auth]
+[entryPoints.dashboard.auth.basic]
+users = ["phamdung:$apr1$c4CFwT9a$utP4Tgdh4ox94PoysmvXa1"]
+
+# http should be redirected to https
+[entryPoints.http]
+address = ":80"
+[entryPoints.http.redirect]
+entryPoint = "https"
+
+# https is the default
+[entryPoints.https]
+address = ":443"
+
+[entryPoints.https.tls]
+
+#Enable ACME (Let's Encrypt): automatic SSL
+[acme]
+email = "phamdung2511@gmail.com"
+storage = "/acme.json"
+entryPoint = "https"
+onDemand = false
+OnHostRule = true
+
+[acme.httpChallenge]
+entryPoint = "http"
+
+[docker]
+endpoint = "unix:///var/run/docker.sock"
+network = "web"
+domain = "phamdung.me"
+watch = true
+exposedbydefault = false
