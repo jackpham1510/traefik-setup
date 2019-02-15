@@ -1,0 +1,4 @@
+FROM traefik:1.7.7-alpine
+EXPOSE 80
+EXPOSE 443
+EXPOSE 8080

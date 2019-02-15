@@ -1,7 +1,7 @@
 version: '3'
 services:
   traefik:
-    image: traefik:1.7.7-alpine
+    build: .
     command: --docker
     ports:
       - "80:80"
